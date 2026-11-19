@@ -120,7 +120,10 @@ export function StudentReadingStudio({ lang, onOpenSettings }: Props) {
           recognition.onerror = (err: any) => {
             console.warn('Speech recognition notice:', err);
             if (err.error === 'not-allowed') {
-              setMicNotice(lang === 'te' ? 'మైక్రోఫోన్ అనుమతి ఇవ్వబడలేదు. సిమ్యులేషన్ మోడ్‌కి మారుతోంది...' : 'Mic permission not granted. Falling back to Simulation Mode...');
+              setMicNotice(lang === 'te' ? 'మైక్రోఫోన్ అనుమతి ఇవ్వబడలేదు. ఆఫ్‌లైన్ సిమ్యులేషన్ మోడ్‌కి మారుతోంది...' : 'Mic permission not granted. Falling back to Simulation Mode...');
+              setSpeechEngine('simulation');
+            } else if (err.error === 'network') {
+              setMicNotice(lang === 'te' ? 'నెట్‌వర్క్ ఆఫ్‌లైన్: పరికరంలో ఆఫ్‌లైన్ స్పీచ్ ఇంజిన్ లేదా డెమో సిమ్యులేషన్ వాడుతోంది.' : 'Network offline: Using local offline diagnostic simulation.');
               setSpeechEngine('simulation');
             }
           };
