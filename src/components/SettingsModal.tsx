@@ -10,6 +10,9 @@ import {
   getStoredStudents,
   saveStudents,
   resetStudentsToDefault,
+  AiVoiceConfig,
+  getStoredVoiceConfig,
+  saveVoiceConfig,
 } from '../data/config-storage';
 import { Lang, STRINGS } from '../i18n';
 
@@ -18,12 +21,12 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   onConfigChange: () => void;
-  initialTab?: 'school' | 'passages' | 'students';
+  initialTab?: 'school' | 'passages' | 'students' | 'ai_engine';
 }
 
 export function SettingsModal({ lang, isOpen, onClose, onConfigChange, initialTab = 'school' }: Props) {
   const t = STRINGS[lang];
-  const [activeTab, setActiveTab] = useState<'school' | 'passages' | 'students'>(initialTab);
+  const [activeTab, setActiveTab] = useState<'school' | 'passages' | 'students' | 'ai_engine'>(initialTab);
 
   // Sync activeTab when initialTab changes or modal opens
   useEffect(() => {
@@ -32,12 +35,16 @@ export function SettingsModal({ lang, isOpen, onClose, onConfigChange, initialTa
       setSchoolConfig(getStoredSchoolConfig());
       setPassages(getStoredPassages());
       setStudents(getStoredStudents());
+      setVoiceConfig(getStoredVoiceConfig());
     }
   }, [isOpen, initialTab]);
 
   // School Config state
   const [schoolConfig, setSchoolConfig] = useState<SchoolConfig>(getStoredSchoolConfig);
   const [savedNotice, setSavedNotice] = useState<string | null>(null);
+
+  // Voice AI & DPDP Config state
+  const [voiceConfig, setVoiceConfig] = useState<AiVoiceConfig>(getStoredVoiceConfig);
 
   // Passages state
   const [passages, setPassages] = useState<Passage[]>(getStoredPassages);
@@ -66,6 +73,13 @@ export function SettingsModal({ lang, isOpen, onClose, onConfigChange, initialTa
     saveSchoolConfig(schoolConfig);
     onConfigChange();
     showNotice(lang === 'te' ? '✓ పాఠశాల సమాచారం భద్రపరచబడింది!' : '✓ School info saved successfully!');
+  };
+
+  const handleSaveVoiceConfig = (e: React.FormEvent) => {
+    e.preventDefault();
+    saveVoiceConfig(voiceConfig);
+    onConfigChange();
+    showNotice(lang === 'te' ? '✓ స్పీచ్ AI & DPDP కాన్ఫిగరేషన్ భద్రపరచబడింది!' : '✓ Speech AI & DPDP config saved!');
   };
 
   const handleAddPassage = (e: React.FormEvent) => {
@@ -158,30 +172,38 @@ export function SettingsModal({ lang, isOpen, onClose, onConfigChange, initialTa
         )}
 
         {/* Modal Navigation Tabs */}
-        <div style={{ display: 'flex', gap: 8, borderBottom: '2px solid var(--rule)', paddingBottom: 6 }}>
+        <div style={{ display: 'flex', gap: 8, borderBottom: '2px solid var(--rule)', paddingBottom: 6, overflowX: 'auto' }}>
           <button
             type="button"
             className={`btn ${activeTab === 'school' ? 'btn-dark' : 'btn-outline'}`}
-            style={{ minHeight: 38, padding: '6px 16px', fontSize: '0.85rem' }}
+            style={{ minHeight: 38, padding: '6px 14px', fontSize: '0.85rem' }}
             onClick={() => setActiveTab('school')}
           >
-            🏫 {lang === 'te' ? 'పాఠశాల వివరాలు' : 'School Details'}
+            🏫 {lang === 'te' ? 'పాఠశాల' : 'School'}
           </button>
           <button
             type="button"
             className={`btn ${activeTab === 'passages' ? 'btn-dark' : 'btn-outline'}`}
-            style={{ minHeight: 38, padding: '6px 16px', fontSize: '0.85rem' }}
+            style={{ minHeight: 38, padding: '6px 14px', fontSize: '0.85rem' }}
             onClick={() => setActiveTab('passages')}
           >
-            📖 {lang === 'te' ? 'కస్టమ్ పాఠాలు (Passages)' : 'Custom Passages'}
+            📖 {lang === 'te' ? 'కస్టమ్ పాఠాలు' : 'Passages'}
           </button>
           <button
             type="button"
             className={`btn ${activeTab === 'students' ? 'btn-dark' : 'btn-outline'}`}
-            style={{ minHeight: 38, padding: '6px 16px', fontSize: '0.85rem' }}
+            style={{ minHeight: 38, padding: '6px 14px', fontSize: '0.85rem' }}
             onClick={() => setActiveTab('students')}
           >
-            🎒 {lang === 'te' ? 'విద్యార్థుల జాబితా (Students)' : 'Student Roster'}
+            🎒 {lang === 'te' ? 'విద్యార్థులు' : 'Roster'}
+          </button>
+          <button
+            type="button"
+            className={`btn ${activeTab === 'ai_engine' ? 'btn-dark' : 'btn-outline'}`}
+            style={{ minHeight: 38, padding: '6px 14px', fontSize: '0.85rem' }}
+            onClick={() => setActiveTab('ai_engine')}
+          >
+            🤖 {lang === 'te' ? 'స్పీచ్ AI & DPDP' : 'Speech AI & DPDP'}
           </button>
         </div>
 
@@ -446,6 +468,129 @@ export function SettingsModal({ lang, isOpen, onClose, onConfigChange, initialTa
               ))}
             </div>
           </div>
+        )}
+
+        {/* TAB 4: Speech AI Engine & DPDP Act 2023 Compliance */}
+        {activeTab === 'ai_engine' && (
+          <form onSubmit={handleSaveVoiceConfig} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: 16, padding: 18, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <span style={{ fontSize: '1.4rem' }}>🛡️</span>
+                <div>
+                  <h3 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--ink)' }}>
+                    {lang === 'te' ? 'DPDP చట్టం 2023 & స్పీచ్ AI ఇంజిన్ వ్యూహం' : 'DPDP Act 2023 & Speech AI Engine Strategy'}
+                  </h3>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--muted)', marginTop: 2 }}>
+                    {lang === 'te'
+                      ? 'చిన్నారుల వాయిస్ బయోమెట్రిక్ ప్రైవసీని కాపాడుతూ గ్రామీణ తెలుగు మాండలికాలకు సరైన ఇంజిన్‌ను ఎంచుకోండి.'
+                      : 'Balance student voice biometric privacy with rural Telugu dialect precision.'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Radio Engine Options */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 4 }}>
+                <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', background: '#ffffff', padding: 12, borderRadius: 12, border: voiceConfig.preferredEngine === 'browser' ? '2px solid var(--green-dark)' : '1px solid var(--rule)', cursor: 'pointer' }}>
+                  <input
+                    type="radio"
+                    name="engine"
+                    checked={voiceConfig.preferredEngine === 'browser'}
+                    onChange={() => setVoiceConfig({ ...voiceConfig, preferredEngine: 'browser' })}
+                    style={{ marginTop: 4 }}
+                  />
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                      <strong style={{ color: 'var(--ink)', fontSize: '0.92rem' }}>
+                        🌐 {lang === 'te' ? 'బ్రౌజర్ ఎడ్జ్ న్యూరల్ ASR (ఆన్-డివైస్)' : 'Browser Edge Neural ASR (On-Device)'}
+                      </strong>
+                      <span style={{ background: 'var(--green-soft)', color: 'var(--green-dark)', padding: '2px 8px', borderRadius: 6, fontSize: '0.72rem', fontWeight: 800 }}>
+                        {lang === 'te' ? 'డిఫాల్ట్ · DPDP చట్టం కంప్లైంట్' : 'Default · 100% DPDP Compliant'}
+                      </span>
+                    </div>
+                    <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: 4 }}>
+                      {lang === 'te'
+                        ? 'ఆడియో పరికరం దాటి ఎక్కడికీ వెళ్ళదు. 100% ఆఫ్‌లైన్, జీరో క్లౌడ్ ఖర్చు. ఇంటర్నెట్ లేని గ్రామీణ పాఠశాలలకు అనువైనది.'
+                        : 'Audio strictly stays on device in transient memory. 100% offline, zero marginal server cost, zero voice data harvesting.'}
+                    </p>
+                  </div>
+                </label>
+
+                <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', background: '#ffffff', padding: 12, borderRadius: 12, border: voiceConfig.preferredEngine === 'sarvam' ? '2px solid var(--amber-dark)' : '1px solid var(--rule)', cursor: 'pointer' }}>
+                  <input
+                    type="radio"
+                    name="engine"
+                    checked={voiceConfig.preferredEngine === 'sarvam'}
+                    onChange={() => setVoiceConfig({ ...voiceConfig, preferredEngine: 'sarvam' })}
+                    style={{ marginTop: 4 }}
+                  />
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                      <strong style={{ color: 'var(--ink)', fontSize: '0.92rem' }}>
+                        🇮🇳 {lang === 'te' ? 'సర్వం AI Saaras (ఇండిక్ క్లౌడ్ ASR)' : 'Sarvam AI Saaras (Indic Cloud ASR)'}
+                      </strong>
+                      <span style={{ background: '#fef3c7', color: '#92400e', padding: '2px 8px', borderRadius: 6, fontSize: '0.72rem', fontWeight: 800 }}>
+                        {lang === 'te' ? 'గ్రామీణ తెలుగు ఉత్తమ ఖచ్చితత్వం' : 'Superior Rural Telugu Dialects'}
+                      </span>
+                    </div>
+                    <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: 4 }}>
+                      {lang === 'te'
+                        ? 'తెలంగాణ గ్రామీణ యాసలు, వొత్తుల లోపాలు మరియు గుణింతాలను ఖచ్చితంగా గుర్తిస్తుంది. (తల్లిదండ్రుల సమ్మతి ఉన్నప్పుడు మాత్రమే ఆన్ అవుతుంది).'
+                        : 'Specially trained on Indic phonetic structures and Telangana rural accents. Delivers unmatched sub-word vottu precision when parental consent permits.'}
+                    </p>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            {/* Sarvam AI Key Configuration */}
+            {voiceConfig.preferredEngine === 'sarvam' && (
+              <div style={{ background: '#fffdf7', border: '1px solid #fde68a', borderRadius: 16, padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <label style={{ fontSize: '0.86rem', fontWeight: 700, color: 'var(--ink)' }}>
+                  {lang === 'te' ? 'సర్వం AI సబ్‌స్క్రిప్షన్ కీ (Sarvam API Key):' : 'Sarvam AI Subscription Key:'}
+                </label>
+                <input
+                  type="password"
+                  className="input-field"
+                  placeholder="sarvam_api_key_xxxxxxxxxxxxxxxx"
+                  value={voiceConfig.sarvamApiKey}
+                  onChange={(e) => setVoiceConfig({ ...voiceConfig, sarvamApiKey: e.target.value })}
+                />
+                <p style={{ fontSize: '0.78rem', color: '#92400e', margin: 0 }}>
+                  💡 {lang === 'te' ? 'ఖాళీగా ఉంచితే, సాఫ్ట్‌వేర్ అంతర్నిర్మిత సర్వం Saaras మాండలిక రూల్స్ మోడ్‌ను వాడుతుంది.' : 'If left blank, system uses built-in Sarvam Saaras dialect normalization rules.'}
+                </p>
+              </div>
+            )}
+
+            {/* DPDP Act 2023 Consent Checkbox */}
+            <div style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: 16, padding: 14 }}>
+              <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={voiceConfig.dpdpConsentEnabled}
+                  onChange={(e) => setVoiceConfig({ ...voiceConfig, dpdpConsentEnabled: e.target.checked })}
+                  style={{ marginTop: 3, transform: 'scale(1.2)' }}
+                />
+                <div>
+                  <strong style={{ fontSize: '0.86rem', color: '#1e3a8a' }}>
+                    {lang === 'te'
+                      ? 'DPDP చట్టం 2023 ప్రకారం తల్లిదండ్రుల సమ్మతి ధృవీకరించబడింది'
+                      : 'Parental Consent Verified under DPDP Act 2023'}
+                  </strong>
+                  <p style={{ fontSize: '0.78rem', color: '#3b82f6', marginTop: 3, lineHeight: 1.4 }}>
+                    {lang === 'te'
+                      ? 'డిజిటల్ పర్సనల్ డేటా ప్రొటెక్షన్ చట్టం ప్రకారం మైనర్ పిల్లల వాయిస్ డేటా రక్షణకు పాఠశాల ప్రధానోపాధ్యాయులు తల్లిదండ్రుల సమ్మతి పత్రం సేకరించినట్లు నిర్ధారిస్తుంది.'
+                      : 'Certifies that school holds verified parental consent for audio diagnostic evaluation as required for minors under Indian DPDP Act 2023.'}
+                  </p>
+                </div>
+              </label>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 10, marginTop: 4 }}>
+              <button type="submit" className="btn btn-primary" style={{ minHeight: 42, padding: '8px 24px' }}>
+                💾 {lang === 'te' ? 'స్పీచ్ AI కాన్ఫిగరేషన్ భద్రపరచండి' : 'Save Voice Configuration'}
+              </button>
+            </div>
+          </form>
         )}
       </div>
     </div>

@@ -103,3 +103,38 @@ export function resetStudentsToDefault(): StudentProfile[] {
   }
   return SAMPLE_STUDENTS;
 }
+
+export interface AiVoiceConfig {
+  preferredEngine: 'browser' | 'sarvam' | 'simulation';
+  sarvamApiKey: string;
+  dpdpConsentEnabled: boolean; // DPDP Act 2023 parental consent for cloud-based voice processing
+  sarvamLanguageCode: string; // 'te-IN'
+}
+
+export const DEFAULT_AI_VOICE_CONFIG: AiVoiceConfig = {
+  preferredEngine: 'browser', // Default to 100% on-device for DPDP compliance & zero cloud costs
+  sarvamApiKey: '',
+  dpdpConsentEnabled: false,
+  sarvamLanguageCode: 'te-IN',
+};
+
+const KEY_VOICE_CONFIG = 'akshara-mitra:ai-voice-config';
+
+export function getStoredVoiceConfig(): AiVoiceConfig {
+  try {
+    const raw = localStorage.getItem(KEY_VOICE_CONFIG);
+    if (raw) return { ...DEFAULT_AI_VOICE_CONFIG, ...JSON.parse(raw) };
+  } catch {
+    // Ignore
+  }
+  return DEFAULT_AI_VOICE_CONFIG;
+}
+
+export function saveVoiceConfig(config: AiVoiceConfig): void {
+  try {
+    localStorage.setItem(KEY_VOICE_CONFIG, JSON.stringify(config));
+  } catch {
+    // Ignore
+  }
+}
+
