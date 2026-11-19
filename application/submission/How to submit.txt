@@ -39,7 +39,7 @@ TISC APPLICATION FORM FIELD VALUES
   LinkedIn Profile URL ........ (Optional)
   Startup Name ................ Gamada
   Startup Website ............. https://gamada.app
-  Stage of the Startup ........ Prototype
+  Stage of the Startup ........ MVP / Prototype (Select MVP or Prototype depending on portal dropdown)
   Startup Location ............ Hyderabad
   Select Problem Statement .... 06. Every Child Reads: Telugu AI Assessment (School Education)
   Brief description ........... Copy & paste all text from "Challenge 06 - description.txt"
@@ -52,17 +52,20 @@ KEY HIGHLIGHTS TO MENTION IF ASKED OR SHORTLISTED
 ================================================================================
 
   1. NIPUN Bharat & Tholimettulu Aligned:
-     Covers all 5 FLN reading progression levels:
+     Covers all 5 FLN reading progression levels for Primary Grades 1 to 5:
      - Level 1: Aksharamulu (Letters & Vowels)
      - Level 2: Sarala Padalu (Simple Consonant-Vowel 2 & 3 letter words)
      - Level 3: Guninthalu & Vottulu (Diacritics & Geminate/Conjunct consonants)
      - Level 4: Vakyalu (Fluent connected sentence reading)
      - Level 5: Katha (Story reading & narrative comprehension)
 
-  2. Dravidian Phonemic Acoustic Engine:
-     Specifically isolates Telugu diacritic drops and vottu omissions (e.g., distinguishing
-     "కప" vs "కప్ప", "తల" vs "తాల") rather than using generic English/Hindi cloud ASR models
-     that hallucinate or auto-correct pronunciation flaws.
+  2. Dual-Tier Indic Speech Engine (Sarvam AI + Local Android Offline):
+     - Primary Flagship: Sarvam AI Saaras Indic foundation model purpose-trained for Indian languages,
+       capturing rural Telangana dialects, aspirates, and subtle conjunct consonants (ద్విత్వ/సంయుక్త అక్షరాలు).
+     - Resilient Offline Fallback: Local Android on-device speech engine for 100% offline resilience in
+       remote habitations without internet, zero cloud GPU costs, and strict DPDP Act 2023 minor data privacy.
+     - Outperforms generic Western models (Whisper/Google ASR) which auto-correct student mistakes and fail
+       diagnostic literacy evaluation.
 
   3. First-Class CwSN (Children with Special Needs) Inclusion under RPwD Act 2016:
      - Blind / Low Vision: Oral-Aural Auditory Phonological Mode + TalkBack screen reader support
@@ -78,10 +81,9 @@ KEY HIGHLIGHTS TO MENTION IF ASKED OR SHORTLISTED
      Classroom FLN distribution charts and one-click auto-generated parent progress notes
      in Telugu and English.
 
-  6. Edge-First & 100% Offline Capable:
-     Runs locally on school tablets, interactive flat panels (IFPs), or teacher phones.
-     Zero cloud GPU server costs, zero bandwidth dependency in remote villages, and 100%
-     DPDP Act 2023 compliant (zero child voice recordings stored or transmitted).
+  6. Dynamic In-App Configurator & Zero Cloud GPU Cost:
+     Teachers add custom stories and school U-DISE info with 100% offline LocalStorage persistence.
+     Zero recurring cloud GPU bills for the department across 26,000+ government schools.
 
 
 ================================================================================
@@ -96,4 +98,4 @@ LOCAL DEMO & TEST VERIFICATION INSTRUCTIONS
   To run the automated test suite:
     cd D:\akshara-mitra
     npx vitest run
-    (Validates 6/6 test cases with 100% passing results).
+    (Validates 7/7 test cases with 100% passing results).

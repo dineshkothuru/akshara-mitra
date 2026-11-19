@@ -15,7 +15,7 @@ Under the **NIPUN Bharat Mission** and Telangana SCERT's **Tholimettulu** framew
 2. **Generic Speech Engine Pitfalls:** Standard cloud speech-to-text models (e.g., Whisper or Google ASR) auto-correct child pronunciation, masking critical Telugu phonemic flaws such as dropped *vottulu* (ద్విత్వ/సంయుక్త అక్షరాలు) or shortened vowels.
 3. **Disability Exclusion:** Traditional oral reading tools fail Children with Special Needs (CwSN). Non-verbal/mute students, deaf learners, and visually impaired children are routinely penalized or marked as "unable to read".
 
-**Akshara Mitra** solves this with an edge-first, bilingual (Telugu & English) reading assessment studio and teacher diagnostic desk featuring comprehensive **RPwD Act 2016** inclusive accommodations.
+**Akshara Mitra** solves this with a dual-tier speech architecture—featuring **Sarvam AI Saaras** as the primary Indic foundation speech model paired with a **Local Android on-device engine** for 100% offline resilience and strict **DPDP Act 2023** child biometric privacy.
 
 ---
 
@@ -29,11 +29,11 @@ D:\akshara-mitra
 │   │   ├── inclusive.ts         # CwSN modalities (Visual Silent Comprehension, Receptive Touch, AAC Tap-to-Voice)
 │   │   └── literacy.test.ts     # Automated test suite (7/7 passing tests)
 │   ├── components/
-│   │   ├── StudentReadingStudio.tsx       # Live microphone neural voice AI (te-IN), word highlight, TTS pronunciation guide
+│   │   ├── StudentReadingStudio.tsx       # Live voice AI with 3-engine switcher (Sarvam AI, Local Android Offline, Demo)
 │   │   ├── InclusiveAssessmentStudio.tsx # Dedicated CwSN testing (Blind Auditory, Deaf Visual, Mute Touch & AAC)
 │   │   ├── TeacherDashboard.tsx           # Class FLN distribution, student dossiers, bilingual parent slips
 │   │   ├── AppMenuDrawer.tsx              # Mobile slide-out drawer menu with active school card & navigation
-│   │   └── SettingsModal.tsx              # In-app dynamic configurator (School U-DISE, custom passages, student roster)
+│   │   └── SettingsModal.tsx              # In-app dynamic configurator (School U-DISE, custom passages, roster, Sarvam & DPDP)
 │   ├── data/
 │   │   ├── literacy-sample.ts   # Graded passages (Levels 1–5), 8-student cohort profiles, touch cloze tasks
 │   │   └── config-storage.ts    # LocalStorage persistence for custom passages, school info, and roster
