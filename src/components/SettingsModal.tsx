@@ -490,31 +490,6 @@ export function SettingsModal({ lang, isOpen, onClose, onConfigChange, initialTa
 
               {/* Radio Engine Options */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 4 }}>
-                <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', background: '#ffffff', padding: 12, borderRadius: 12, border: voiceConfig.preferredEngine === 'browser' ? '2px solid var(--green-dark)' : '1px solid var(--rule)', cursor: 'pointer' }}>
-                  <input
-                    type="radio"
-                    name="engine"
-                    checked={voiceConfig.preferredEngine === 'browser'}
-                    onChange={() => setVoiceConfig({ ...voiceConfig, preferredEngine: 'browser' })}
-                    style={{ marginTop: 4 }}
-                  />
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                      <strong style={{ color: 'var(--ink)', fontSize: '0.92rem' }}>
-                        📱 {lang === 'te' ? 'లోకల్ ఆండ్రాయిడ్ స్పీచ్ ఇంజిన్ (ఆన్-డివైస్)' : 'Local Android Speech Engine (On-Device)'}
-                      </strong>
-                      <span style={{ background: 'var(--green-soft)', color: 'var(--green-dark)', padding: '2px 8px', borderRadius: 6, fontSize: '0.72rem', fontWeight: 800 }}>
-                        {lang === 'te' ? 'డిఫాల్ట్ · DPDP చట్టం కంప్లైంట్' : 'Default · 100% DPDP Compliant'}
-                      </span>
-                    </div>
-                    <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: 4 }}>
-                      {lang === 'te'
-                        ? 'పాఠశాల ఆండ్రాయిడ్ టాబ్లెట్‌లలో నేరుగా నడుస్తుంది. ఆడియో పరికరం దాటి వెళ్ళదు, 100% ఆఫ్‌లైన్, జీరో క్లౌడ్ సర్వర్ ఖర్చు.'
-                        : 'Runs locally on government school Android tablets. 100% offline via device speech packs, zero cloud GPU cost, zero voice biometric data harvesting.'}
-                    </p>
-                  </div>
-                </label>
-
                 <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', background: '#ffffff', padding: 12, borderRadius: 12, border: voiceConfig.preferredEngine === 'sarvam' ? '2px solid var(--amber-dark)' : '1px solid var(--rule)', cursor: 'pointer' }}>
                   <input
                     type="radio"
@@ -526,16 +501,41 @@ export function SettingsModal({ lang, isOpen, onClose, onConfigChange, initialTa
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
                       <strong style={{ color: 'var(--ink)', fontSize: '0.92rem' }}>
-                        🇮🇳 {lang === 'te' ? 'సర్వం AI Saaras (ఇండిక్ క్లౌడ్ ASR)' : 'Sarvam AI Saaras (Indic Cloud ASR)'}
+                        🇮🇳 {lang === 'te' ? 'సర్వం AI Saaras (ప్రైమరీ ఇండిక్ ASR)' : 'Sarvam AI Saaras (Primary Indic ASR)'}
                       </strong>
                       <span style={{ background: '#fef3c7', color: '#92400e', padding: '2px 8px', borderRadius: 6, fontSize: '0.72rem', fontWeight: 800 }}>
-                        {lang === 'te' ? 'గ్రామీణ తెలుగు ఉత్తమ ఖచ్చితత్వం' : 'Superior Rural Telugu Dialects'}
+                        {lang === 'te' ? 'ఫ్లాగ్‌షిప్ · గ్రామీణ తెలుగు యాసల నైపుణ్యం' : 'Flagship · Rural Telugu Precision'}
                       </span>
                     </div>
                     <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: 4 }}>
                       {lang === 'te'
-                        ? 'తెలంగాణ గ్రామీణ యాసలు, వొత్తుల లోపాలు మరియు గుణింతాలను ఖచ్చితంగా గుర్తిస్తుంది. (తల్లిదండ్రుల సమ్మతి ఉన్నప్పుడు మాత్రమే ఆన్ అవుతుంది).'
-                        : 'Specially trained on Indic phonetic structures and Telangana rural accents. Delivers unmatched sub-word vottu precision when parental consent permits.'}
+                        ? 'భారతీయ భాషల ఫౌండేషన్ మోడల్. తెలంగాణ గ్రామీణ యాసలు, వొత్తుల లోపాలు మరియు గుణింతాలను ఖచ్చితంగా గుర్తిస్తుంది.'
+                        : 'SOTA Indic foundation model purpose-trained for Indian languages. Delivers unmatched sub-word vottu precision on rural Telangana dialects.'}
+                    </p>
+                  </div>
+                </label>
+
+                <label style={{ display: 'flex', gap: 12, alignItems: 'flex-start', background: '#ffffff', padding: 12, borderRadius: 12, border: voiceConfig.preferredEngine === 'browser' ? '2px solid var(--green-dark)' : '1px solid var(--rule)', cursor: 'pointer' }}>
+                  <input
+                    type="radio"
+                    name="engine"
+                    checked={voiceConfig.preferredEngine === 'browser'}
+                    onChange={() => setVoiceConfig({ ...voiceConfig, preferredEngine: 'browser' })}
+                    style={{ marginTop: 4 }}
+                  />
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                      <strong style={{ color: 'var(--ink)', fontSize: '0.92rem' }}>
+                        📱 {lang === 'te' ? 'లోకల్ ఆండ్రాయిడ్ స్పీచ్ ఇంజిన్ (ఆఫ్‌లైన్ బ్యాకప్)' : 'Local Android Speech Engine (Offline Fallback)'}
+                      </strong>
+                      <span style={{ background: 'var(--green-soft)', color: 'var(--green-dark)', padding: '2px 8px', borderRadius: 6, fontSize: '0.72rem', fontWeight: 800 }}>
+                        {lang === 'te' ? '100% ఆఫ్‌లైన్ · DPDP రక్షణ' : '100% Offline · DPDP Compliant'}
+                      </span>
+                    </div>
+                    <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: 4 }}>
+                      {lang === 'te'
+                        ? 'ఇంటర్నెట్ లేనప్పుడు ఆటోమేటిక్‌గా ఆన్ అవుతుంది. ఆడియో టాబ్లెట్ దాటి వెళ్ళదు, 100% ప్రైవేట్, జీరో క్లౌడ్ సర్వర్ ఖర్చు.'
+                        : 'Auto-engages whenever network is unavailable. Audio strictly stays on the school tablet. 100% offline, $0 marginal cloud cost.'}
                     </p>
                   </div>
                 </label>

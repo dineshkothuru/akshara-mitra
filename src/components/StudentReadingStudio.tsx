@@ -123,8 +123,8 @@ export function StudentReadingStudio({ lang, onOpenSettings }: Props) {
               setMicNotice(lang === 'te' ? 'మైక్రోఫోన్ అనుమతి ఇవ్వబడలేదు. ఆఫ్‌లైన్ సిమ్యులేషన్ మోడ్‌కి మారుతోంది...' : 'Mic permission not granted. Falling back to Simulation Mode...');
               setSpeechEngine('simulation');
             } else if (err.error === 'network') {
-              setMicNotice(lang === 'te' ? 'నెట్‌వర్క్ ఆఫ్‌లైన్: పరికరంలో ఆఫ్‌లైన్ స్పీచ్ ఇంజిన్ లేదా డెమో సిమ్యులేషన్ వాడుతోంది.' : 'Network offline: Using local offline diagnostic simulation.');
-              setSpeechEngine('simulation');
+              setMicNotice(lang === 'te' ? 'నెట్‌వర్క్ అందుబాటులో లేదు: ఆటోమేటిక్‌గా లోకల్ ఆండ్రాయిడ్ ఆఫ్‌లైన్ మోడ్‌కి మారబడింది.' : 'Network unavailable: Automatically switched to Local Android Offline Fallback.');
+              setSpeechEngine('browser');
             }
           };
 
@@ -284,25 +284,25 @@ export function StudentReadingStudio({ lang, onOpenSettings }: Props) {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-            {/* 3-Engine Switcher: Local Android (DPDP 🔒) vs Sarvam AI (Saaras 🇮🇳) vs Demo Simulation */}
+            {/* 3-Engine Switcher: Primary Sarvam AI (Indic 🇮🇳) vs Local Android (Offline Fallback 📱) vs Demo Simulation */}
             <div style={{ display: 'inline-flex', background: '#f1f5f9', padding: 3, borderRadius: 999, border: '1px solid var(--rule)', gap: 2 }}>
+              <button
+                type="button"
+                className={`filter-btn${speechEngine === 'sarvam' ? ' active' : ''}`}
+                style={{ fontSize: '0.74rem', padding: '4px 12px', minHeight: 28, fontWeight: speechEngine === 'sarvam' ? 800 : 500 }}
+                onClick={() => setSpeechEngine('sarvam')}
+                title="Primary: Sarvam AI Saaras Indic ASR. High-fidelity Indic foundation model for rural Telangana dialects."
+              >
+                🇮🇳 {lang === 'te' ? 'సర్వం AI (ప్రైమరీ)' : 'Sarvam AI (Primary)'}
+              </button>
               <button
                 type="button"
                 className={`filter-btn${speechEngine === 'browser' ? ' active' : ''}`}
                 style={{ fontSize: '0.74rem', padding: '4px 10px', minHeight: 28, fontWeight: speechEngine === 'browser' ? 800 : 500 }}
                 onClick={() => setSpeechEngine('browser')}
-                title="Local Android on-device Speech Engine. Zero cloud cost & fully DPDP Act 2023 compliant."
+                title="Resilient Fallback: Local Android on-device speech engine when network is unavailable. DPDP compliant & $0 cloud cost."
               >
-                📱 {lang === 'te' ? 'లోకల్ ఆండ్రాయిడ్ (DPDP 🔒)' : 'Local Android (DPDP 🔒)'}
-              </button>
-              <button
-                type="button"
-                className={`filter-btn${speechEngine === 'sarvam' ? ' active' : ''}`}
-                style={{ fontSize: '0.74rem', padding: '4px 10px', minHeight: 28, fontWeight: speechEngine === 'sarvam' ? 800 : 500 }}
-                onClick={() => setSpeechEngine('sarvam')}
-                title="Sarvam AI Saaras Indic ASR: Indic foundation model integration for state-scale dialect analytics."
-              >
-                🇮🇳 {lang === 'te' ? 'సర్వం AI (Saaras)' : 'Sarvam AI (Saaras)'}
+                📱 {lang === 'te' ? 'ఆండ్రాయిడ్ ఆఫ్‌లైన్ (DPDP 🔒)' : 'Android Offline (DPDP 🔒)'}
               </button>
               <button
                 type="button"
@@ -327,7 +327,7 @@ export function StudentReadingStudio({ lang, onOpenSettings }: Props) {
 
             {isRecording && (
               <span className="pill" style={{ background: 'var(--red-soft)', color: 'var(--red)', fontSize: '0.85rem' }}>
-                🔴 {elapsedSeconds}s · {speechEngine === 'sarvam' ? '🇮🇳 Sarvam AI Listening...' : speechEngine === 'browser' ? '🌐 Browser ASR Listening...' : t.micListening}
+                🔴 {elapsedSeconds}s · {speechEngine === 'sarvam' ? '🇮🇳 Sarvam AI Listening...' : speechEngine === 'browser' ? '📱 Android Offline Listening...' : t.micListening}
               </span>
             )}
           </div>
@@ -340,22 +340,22 @@ export function StudentReadingStudio({ lang, onOpenSettings }: Props) {
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: 8,
-          background: speechEngine === 'browser' ? '#f0fdf4' : speechEngine === 'sarvam' ? '#faf5ff' : '#f8fafc',
-          border: `1px solid ${speechEngine === 'browser' ? '#bbf7d0' : speechEngine === 'sarvam' ? '#e9d5ff' : '#e2e8f0'}`,
+          background: speechEngine === 'sarvam' ? '#faf5ff' : speechEngine === 'browser' ? '#f0fdf4' : '#f8fafc',
+          border: `1px solid ${speechEngine === 'sarvam' ? '#e9d5ff' : speechEngine === 'browser' ? '#bbf7d0' : '#e2e8f0'}`,
           borderRadius: 8,
           padding: '7px 12px',
           fontSize: '0.8rem',
           marginTop: 2
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span>{speechEngine === 'browser' ? '🔒' : speechEngine === 'sarvam' ? '🇮🇳' : '⚡'}</span>
-            <span style={{ fontWeight: 600, color: speechEngine === 'browser' ? '#166534' : speechEngine === 'sarvam' ? '#6b21a8' : '#475569' }}>
-              {speechEngine === 'browser'
-                ? (lang === 'te' ? 'DPDP Act 2023 రక్షణ: లోకల్ ఆండ్రాయిడ్ స్పీచ్ ASR (ఆడియో బయటకు వెళ్ళదు, 100% ప్రైవేట్ · జీరో క్లౌడ్ ఖర్చు)' : 'DPDP Act 2023 Compliant: Local Android Speech ASR (Zero minor audio leaves tablet · $0 Cloud GPU)')
-                : speechEngine === 'sarvam'
+            <span>{speechEngine === 'sarvam' ? '🇮🇳' : speechEngine === 'browser' ? '🔒' : '⚡'}</span>
+            <span style={{ fontWeight: 600, color: speechEngine === 'sarvam' ? '#6b21a8' : speechEngine === 'browser' ? '#166534' : '#475569' }}>
+              {speechEngine === 'sarvam'
                 ? (lang === 'te'
-                    ? `సర్వం AI Saaras ASR: గ్రామీణ తెలంగాణ యాసలు, ఉప-వర్ణాల విశ్లేషణ (${voiceConfig.sarvamApiKey ? 'కీ యాక్టివ్' : 'సమ్మతితో సిద్ధం'})`
-                    : `Sarvam AI Saaras Indic ASR: High-fidelity rural dialect & conjunct analysis (${voiceConfig.sarvamApiKey ? 'API Key Active' : 'Consent Enabled'})`)
+                    ? `ప్రైమరీ మోడ్: సర్వం AI Saaras ASR (భారతీయ భాషల ఫౌండేషన్ మోడల్ · ${voiceConfig.sarvamApiKey ? 'API కీ యాక్టివ్' : 'ఇండిక్ మోడల్ సిద్ధం'})`
+                    : `Primary Engine: Sarvam AI Saaras Indic ASR (${voiceConfig.sarvamApiKey ? 'Saaras API Active' : 'Indic Foundation Ready'})`)
+                : speechEngine === 'browser'
+                ? (lang === 'te' ? 'ఆఫ్‌లైన్ బ్యాకప్ మోడ్: లోకల్ ఆండ్రాయిడ్ స్పీచ్ ASR (నెట్‌వర్క్ లేనప్పుడు 100% ఆఫ్‌లైన్ & DPDP రక్షణ · జీరో క్లౌడ్ ఖర్చు)' : 'Offline Fallback: Local Android On-Device Engine (Auto-engages when offline · 100% DPDP compliant · $0 Cloud)')
                 : (lang === 'te' ? 'డెమో సిమ్యులేషన్: ప్రాథమిక తరగతి విద్యార్థి సహజ పఠన శైలి సిమ్యులేషన్' : 'Demo Simulation: Evaluates natural primary student phonetic variance without mic')}
             </span>
           </div>

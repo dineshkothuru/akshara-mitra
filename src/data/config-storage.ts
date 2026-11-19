@@ -112,9 +112,9 @@ export interface AiVoiceConfig {
 }
 
 export const DEFAULT_AI_VOICE_CONFIG: AiVoiceConfig = {
-  preferredEngine: 'browser', // Default to 100% on-device for DPDP compliance & zero cloud costs
+  preferredEngine: 'sarvam', // Primary: Sarvam AI Saaras Indic Speech Engine with local Android offline fallback
   sarvamApiKey: '',
-  dpdpConsentEnabled: false,
+  dpdpConsentEnabled: true,
   sarvamLanguageCode: 'te-IN',
 };
 
