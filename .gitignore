@@ -1,0 +1,7 @@
+node_modules
+dist
+.temp
+*.log
+application/decks/deck-print.html
+.DS_Store
+Thumbs.db

@@ -1,0 +1,99 @@
+TISC 2026 - Challenge 06 Submission Guide
+
+Project: Akshara Mitra (అక్షర మిత్ర)
+Department: School Education Department (Samagra Shiksha / NIPUN Bharat Telangana)
+Challenge: 06. Every Child Reads: Telugu AI Assessment
+Last date: 20 November 2026
+Portal: https://tisc.telangana.gov.in (Click "Apply")
+
+Startup: Gamada (https://gamada.app)
+Founders:
+  - Dinesh Kumar Kothuru (+91 99664 26599 · dinesh.kothuru@gmail.com)
+  - Mahesh Gudladona (+91 80562 26280 · mahesh288@gmail.com)
+Both founders are credited on the cover and contact slides of the pitch deck.
+
+
+================================================================================
+FILES IN THIS SUBMISSION FOLDER
+================================================================================
+
+  1. Akshara-Mitra-Challenge-06-Pitch-Deck.pptx
+     Full 13-slide 16:9 widescreen pitch deck. Every slide rendered with embedded
+     high-resolution graphics, accessible screen reader text, and complete speaker notes.
+
+  2. Akshara-Mitra-Challenge-06-Pitch-Deck.pdf
+     Clean 13-page vector-rendered PDF equivalent (useful if the portal prefers PDF).
+
+  3. Challenge 06 - description.txt
+     Exact plain-text pitch summary formatted for the TISC form field (1,493 characters,
+     strictly within the portal's 1,500-character ceiling).
+
+
+================================================================================
+TISC APPLICATION FORM FIELD VALUES
+================================================================================
+
+  I am applying as ............ Startup
+  Full Name ................... Dinesh Kumar Kothuru
+  Email ID .................... dinesh.kothuru@gmail.com
+  LinkedIn Profile URL ........ (Optional)
+  Startup Name ................ Gamada
+  Startup Website ............. https://gamada.app
+  Stage of the Startup ........ Prototype
+  Startup Location ............ Hyderabad
+  Select Problem Statement .... 06. Every Child Reads: Telugu AI Assessment (School Education)
+  Brief description ........... Copy & paste all text from "Challenge 06 - description.txt"
+  Upload Pitch Deck ........... Upload "Akshara-Mitra-Challenge-06-Pitch-Deck.pptx" (or .pdf)
+  Confirmation ................ Tick the declaration checkbox, then click Submit.
+
+
+================================================================================
+KEY HIGHLIGHTS TO MENTION IF ASKED OR SHORTLISTED
+================================================================================
+
+  1. NIPUN Bharat & Tholimettulu Aligned:
+     Covers all 5 FLN reading progression levels:
+     - Level 1: Aksharamulu (Letters & Vowels)
+     - Level 2: Sarala Padalu (Simple Consonant-Vowel 2 & 3 letter words)
+     - Level 3: Guninthalu & Vottulu (Diacritics & Geminate/Conjunct consonants)
+     - Level 4: Vakyalu (Fluent connected sentence reading)
+     - Level 5: Katha (Story reading & narrative comprehension)
+
+  2. Dravidian Phonemic Acoustic Engine:
+     Specifically isolates Telugu diacritic drops and vottu omissions (e.g., distinguishing
+     "కప" vs "కప్ప", "తల" vs "తాల") rather than using generic English/Hindi cloud ASR models
+     that hallucinate or auto-correct pronunciation flaws.
+
+  3. First-Class CwSN (Children with Special Needs) Inclusion under RPwD Act 2016:
+     - Blind / Low Vision: Oral-Aural Auditory Phonological Mode + TalkBack screen reader support
+     - Deaf / Hard of Hearing: Silent Visual Comprehension Mode (word-image association & sentence cloze)
+     - Mute / Non-Verbal: Receptive Touch Literacy Mode & AAC Tap-to-Voice Sentence Builder (eliminates
+       false "0 WPM" penalties and tests true cognitive decoding).
+
+  4. Closed-Loop Remedial Drills:
+     The moment a phoneme deficiency is identified, the system dynamically generates
+     targeted flashcards and drills with native Telugu audio pronunciation guides.
+
+  5. Teacher Diagnostic Desk & Bilingual Parent Slips:
+     Classroom FLN distribution charts and one-click auto-generated parent progress notes
+     in Telugu and English.
+
+  6. Edge-First & 100% Offline Capable:
+     Runs locally on school tablets, interactive flat panels (IFPs), or teacher phones.
+     Zero cloud GPU server costs, zero bandwidth dependency in remote villages, and 100%
+     DPDP Act 2023 compliant (zero child voice recordings stored or transmitted).
+
+
+================================================================================
+LOCAL DEMO & TEST VERIFICATION INSTRUCTIONS
+================================================================================
+
+  To run the live application:
+    cd D:\akshara-mitra
+    npm run dev
+    Open in browser: http://localhost:3050
+
+  To run the automated test suite:
+    cd D:\akshara-mitra
+    npx vitest run
+    (Validates 6/6 test cases with 100% passing results).

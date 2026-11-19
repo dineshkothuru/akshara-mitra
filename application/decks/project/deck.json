@@ -1,0 +1,32 @@
+{
+  "v": 4,
+  "createdOnFiles": { "v": 1, "at": "2026-11-19T18:30:00Z" },
+  "lists": "css",
+  "title": "Akshara Mitra - TISC Challenge 06",
+  "cover": "cover",
+  "order": [
+    "cover",
+    "asked",
+    "fln",
+    "levels",
+    "speech",
+    "studio",
+    "cwsn",
+    "remedial",
+    "teacher",
+    "architecture",
+    "stage",
+    "pilot",
+    "contact"
+  ],
+  "sections": {
+    "s1": { "description": "Challenge 06 requirements, foundational literacy gap, and Tholimettulu FLN alignment.", "start": "cover" },
+    "s2": { "description": "Phonemic voice AI, reading studio, CwSN RPwD inclusion, and remedial practice.", "start": "speech" },
+    "s3": { "description": "Teacher diagnostic desk, offline edge architecture, verified prototype, and 90-day pilot.", "start": "teacher" }
+  },
+  "faces": {
+    "space-grotesk": { "family": "Space Grotesk", "href": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@400;500;600;700&family=Ramabhadra&display=swap" },
+    "inter": { "family": "Inter", "href": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@400;500;600;700&family=Ramabhadra&display=swap" }
+  },
+  "designSystems": []
+}

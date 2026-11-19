@@ -1,0 +1,9 @@
+Problem: Foundational literacy (FLN) is Telangana's priority under NIPUN Bharat and Tholimettulu, but manual 1-on-1 reading tests take 8-10 mins per child. In multi-grade primary schools, teachers lose weeks of teaching time, feedback is delayed by months, and children with special needs (CwSN) are excluded.
+
+Why generic tools fail: Cloud speech models auto-correct pronunciation, masking critical Telugu phonemic flaws like dropped vottulu (ద్విత్వ/సంయుక్త అక్షరాలు) and short/long vowel confusion. Standard voice apps also unfairly score mute or deaf students as zero.
+
+Solution: Akshara Mitra is an autonomous, bilingual (Telugu & English) reading assessment studio and teacher diagnostic desk for primary Grades 1–5. Children read graded passages; the engine calculates real-time Words Per Minute (WPM), accuracy %, omissions, and hesitations across 5 FLN levels (Aksharamulu to Story Comprehension). When a phonemic gap is detected (e.g., dropping Pa-vottu in కప్ప), it dynamically generates targeted remedial drills with native audio guides. Crucially, it pioneers RPwD Act 2016 inclusive assessment: Oral-Aural mode for blind students, Silent Visual mode for deaf learners, and Receptive Touch & AAC Tap-to-Voice for non-verbal children. Auto-drafts bilingual parent progress slips.
+
+Architecture: 100% offline edge AI running on low-cost tablets or phones. DPDP Act compliant with zero voice harvesting.
+
+Stage: Working prototype with passing tests. Validated on an 8-student cohort.
