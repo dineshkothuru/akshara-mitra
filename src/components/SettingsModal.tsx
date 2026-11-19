@@ -501,7 +501,7 @@ export function SettingsModal({ lang, isOpen, onClose, onConfigChange, initialTa
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
                       <strong style={{ color: 'var(--ink)', fontSize: '0.92rem' }}>
-                        🌐 {lang === 'te' ? 'బ్రౌజర్ ఎడ్జ్ న్యూరల్ ASR (ఆన్-డివైస్)' : 'Browser Edge Neural ASR (On-Device)'}
+                        📱 {lang === 'te' ? 'లోకల్ ఆండ్రాయిడ్ స్పీచ్ ఇంజిన్ (ఆన్-డివైస్)' : 'Local Android Speech Engine (On-Device)'}
                       </strong>
                       <span style={{ background: 'var(--green-soft)', color: 'var(--green-dark)', padding: '2px 8px', borderRadius: 6, fontSize: '0.72rem', fontWeight: 800 }}>
                         {lang === 'te' ? 'డిఫాల్ట్ · DPDP చట్టం కంప్లైంట్' : 'Default · 100% DPDP Compliant'}
@@ -509,8 +509,8 @@ export function SettingsModal({ lang, isOpen, onClose, onConfigChange, initialTa
                     </div>
                     <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: 4 }}>
                       {lang === 'te'
-                        ? 'ఆడియో పరికరం దాటి ఎక్కడికీ వెళ్ళదు. 100% ఆఫ్‌లైన్, జీరో క్లౌడ్ ఖర్చు. ఇంటర్నెట్ లేని గ్రామీణ పాఠశాలలకు అనువైనది.'
-                        : 'Audio strictly stays on device in transient memory. 100% offline, zero marginal server cost, zero voice data harvesting.'}
+                        ? 'పాఠశాల ఆండ్రాయిడ్ టాబ్లెట్‌లలో నేరుగా నడుస్తుంది. ఆడియో పరికరం దాటి వెళ్ళదు, 100% ఆఫ్‌లైన్, జీరో క్లౌడ్ సర్వర్ ఖర్చు.'
+                        : 'Runs locally on government school Android tablets. 100% offline via device speech packs, zero cloud GPU cost, zero voice biometric data harvesting.'}
                     </p>
                   </div>
                 </label>

@@ -284,23 +284,23 @@ export function StudentReadingStudio({ lang, onOpenSettings }: Props) {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-            {/* 3-Engine Switcher: Browser Edge (DPDP 🔒) vs Sarvam AI (Saaras 🇮🇳) vs Demo Simulation */}
+            {/* 3-Engine Switcher: Local Android (DPDP 🔒) vs Sarvam AI (Saaras 🇮🇳) vs Demo Simulation */}
             <div style={{ display: 'inline-flex', background: '#f1f5f9', padding: 3, borderRadius: 999, border: '1px solid var(--rule)', gap: 2 }}>
               <button
                 type="button"
                 className={`filter-btn${speechEngine === 'browser' ? ' active' : ''}`}
                 style={{ fontSize: '0.74rem', padding: '4px 10px', minHeight: 28, fontWeight: speechEngine === 'browser' ? 800 : 500 }}
                 onClick={() => setSpeechEngine('browser')}
-                title="100% on-device Browser Edge Neural ASR. Zero cloud cost & fully DPDP Act 2023 compliant."
+                title="Local Android on-device Speech Engine. Zero cloud cost & fully DPDP Act 2023 compliant."
               >
-                🌐 {lang === 'te' ? 'బ్రౌజర్ ఎడ్జ్ (DPDP 🔒)' : 'Browser Edge (DPDP 🔒)'}
+                📱 {lang === 'te' ? 'లోకల్ ఆండ్రాయిడ్ (DPDP 🔒)' : 'Local Android (DPDP 🔒)'}
               </button>
               <button
                 type="button"
                 className={`filter-btn${speechEngine === 'sarvam' ? ' active' : ''}`}
                 style={{ fontSize: '0.74rem', padding: '4px 10px', minHeight: 28, fontWeight: speechEngine === 'sarvam' ? 800 : 500 }}
                 onClick={() => setSpeechEngine('sarvam')}
-                title="Sarvam AI Saaras Indic ASR: Superior accuracy for rural Telangana dialects and soft conjuncts (requires parental consent)."
+                title="Sarvam AI Saaras Indic ASR: Indic foundation model integration for state-scale dialect analytics."
               >
                 🇮🇳 {lang === 'te' ? 'సర్వం AI (Saaras)' : 'Sarvam AI (Saaras)'}
               </button>
@@ -351,7 +351,7 @@ export function StudentReadingStudio({ lang, onOpenSettings }: Props) {
             <span>{speechEngine === 'browser' ? '🔒' : speechEngine === 'sarvam' ? '🇮🇳' : '⚡'}</span>
             <span style={{ fontWeight: 600, color: speechEngine === 'browser' ? '#166534' : speechEngine === 'sarvam' ? '#6b21a8' : '#475569' }}>
               {speechEngine === 'browser'
-                ? (lang === 'te' ? 'DPDP Act 2023 రక్షణ: ఆన్-డివైస్ బ్రౌజర్ ఎడ్జ్ ASR (ఆడియో బయటకు వెళ్ళదు, 100% ప్రైవేట్ · జీరో క్లౌడ్ ఖర్చు)' : 'DPDP Act 2023 Compliant: On-Device Edge ASR (Zero minor audio leaves device · $0 Cloud GPU)')
+                ? (lang === 'te' ? 'DPDP Act 2023 రక్షణ: లోకల్ ఆండ్రాయిడ్ స్పీచ్ ASR (ఆడియో బయటకు వెళ్ళదు, 100% ప్రైవేట్ · జీరో క్లౌడ్ ఖర్చు)' : 'DPDP Act 2023 Compliant: Local Android Speech ASR (Zero minor audio leaves tablet · $0 Cloud GPU)')
                 : speechEngine === 'sarvam'
                 ? (lang === 'te'
                     ? `సర్వం AI Saaras ASR: గ్రామీణ తెలంగాణ యాసలు, ఉప-వర్ణాల విశ్లేషణ (${voiceConfig.sarvamApiKey ? 'కీ యాక్టివ్' : 'సమ్మతితో సిద్ధం'})`
@@ -411,7 +411,7 @@ export function StudentReadingStudio({ lang, onOpenSettings }: Props) {
             color: speechEngine === 'sarvam' ? '#581c87' : '#1e40af'
           }}>
             <b>
-              {speechEngine === 'sarvam' ? '🇮🇳 సర్వం AI Saaras ASR (te-IN):' : '🎙️ బ్రౌజర్ ఎడ్జ్ Neural ASR (te-IN · DPDP On-Device 🔒):'}
+              {speechEngine === 'sarvam' ? '🇮🇳 సర్వం AI Saaras ASR (te-IN):' : '🎙️ లోకల్ ఆండ్రాయిడ్ స్పీచ్ ASR (te-IN · DPDP On-Device 🔒):'}
             </b>{' '}
             <span>{liveTranscript || (lang === 'te' ? 'మైక్‌లోకి మాట్లాడండి… AI రియల్‌టైమ్‌లో ట్రాన్స్‌క్రిప్ట్ చేస్తుంది' : 'Speak into microphone… AI will transcribe here')}</span>
           </div>
